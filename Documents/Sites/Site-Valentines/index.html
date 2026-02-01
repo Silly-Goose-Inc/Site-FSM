@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Proposal</title>
+
+<style>
+/* ===== BODY & BACKGROUND ===== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffd6d6 0%, #ffe7f0 100%);
+    color: #333;
+}
+
+/* ===== COLLAGE GRID ===== */
+.photo-collage-grid {
+    width: 100%;
+    max-width: 720px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-areas:
+        "tl feat tr"
+        "bl feat br";
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    position: relative;
+}
+
+/* ----- BASE PHOTO RULE ----- */
+.photo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ----- FEATURED & CORNERS ----- */
+.photo.featured { grid-area: feat; }
+.photo.top-left { grid-area: tl; }
+.photo.top-right { grid-area: tr; }
+.photo.bottom-left { grid-area: bl; }
+.photo.bottom-right { grid-area: br; }
+
+/* ----- IMAGE SIZE CAPS ----- */
+.photo.small { max-width: 220px; max-height: 220px; }
+.photo.featured img { max-width: 420px; max-height: 420px; }
+
+/* ----- SUBTLE COLLAGE ROTATION ----- */
+.photo.top-left { transform: rotate(-3deg); }
+.photo.top-right { transform: rotate(2deg); }
+.photo.bottom-left { transform: rotate(2deg); }
+.photo.bottom-right { transform: rotate(-2deg); }
+
+/* ===== CARD STYLING ===== */
+.proposal-card {
+    max-width: 760px;
+    margin: 30px auto;
+    padding: 25px 20px;
+    background: #fff0f5;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* ===== TEXT ===== */
+.text-section { margin: 25px 0; }
+.proposal-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ff1e56;
+    margin-bottom: 10px;
+}
+.proposal-question {
+    font-size: 1.3rem;
+    color: #ff5a5f;
+    font-style: italic;
+}
+
+/* ===== BUTTONS ===== */
+.choice-section { margin: 20px 0; }
+.button-pair {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover { transform: scale(1.05); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+.btn.primary { background: #ff1e56; color: #fff; }
+.btn.secondary { background: #ffc6d3; color: #a6002e; }
+
+/* ===== RESPONSE MESSAGES ===== */
+.hidden-message {
+    display: none;
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #ffddee;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #9b0036;
+}
+
+/* ===== FOOTER ===== */
+.card-footer { margin-top: 25px; font-size: 0.85rem; color: #9b0036; font-style: italic; }
+</style>
+</head>
+
+<body>
+
+<main class="viewport">
+
+<div class="proposal-card">
+
+    <header class="card-header">
+        <span class="pill-tag">Yours (always), I Double Promise</span>
+    </header>
+
+    <!-- === COLLAGE GRID === -->
+    <section class="image-section">
+        <div class="photo-collage-grid">
+            <div class="photo featured">
+                <img src="img/IMG_1743.jpg" alt="Photo of us together">
+            </div>
+            <div class="photo small top-left">
+                <img src="img/IMG_1817.jpg" alt="Photo of us together">
+            </div>
+            <div class="photo small top-right">
+                <img src="img/IMG_1909.jpg" alt="Photo of us together">
+            </div>
+            <div class="photo small bottom-left">
+                <img src="img/IMG_3265.jpg" alt="Photo of us together">
+            </div>
+            <div class="photo small bottom-right">
+                <img src="img/IMG_3400.jpg" alt="Photo of us together">
+            </div>
+        </div>
+    </section>
+
+    <!-- === TEXT BLOCK === -->
+    <section class="text-section">
+        <h1 id="name" class="proposal-title">You Make me So Proud, Christina Leigh</h1>
+        <p id="question" class="proposal-question">Would you do me the honor of being my Valentine?</p>
+    </section>
+
+    <!-- === BUTTONS === -->
+    <section class="choice-section">
+        <div class="button-pair">
+            <button class="btn secondary" id="no-button" onclick="showMessage('No')">Not Yet 😢</button>
+            <button class="btn primary" id="yesButton" onclick="showMessage('Yes')">Of Course! 💖</button>
+        </div>
+    </section>
+
+    <!-- === RESPONSE MESSAGES === -->
+    <section class="response-section">
+        <div class="hidden-message message-card" id="no-message">
+            <p>Aww… I’ll wait patiently, my darling love ❤️</p>
+        </div>
+        <div class="hidden-message message-card" id="yes-message">
+            <p>YAY! My heart is yours forever</p>
+        </div>
+    </section>
+
+    <footer class="card-footer">
+        <small>*Legally Binding Contract Above*</small>
+    </footer>
+
+</div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
